@@ -5,7 +5,7 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -15,77 +15,93 @@
       "to": "#07C983"
     }
   },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
+  "modeToggle": {
+    "default": "dark"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-S98KMZZZY1"
+    }
+  },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Learn More",
+      "url": "https://www.benzinga.com/apis"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get Started",
+    "url": "https://www.benzinga.com/apis/licensing/register"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
+  "api": {
+    "auth": {
+      "method": "key"
+    },
+    "playground": {
+      "mode": "show"
     }
-  ],
+  },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "API Suite",
+      "icon": "list",
+      "url": "https://www.benzinga.com/apis/data"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://www.benzinga.com/apis/blog/"
+    },
+    {
+      "name": "Contact Us",
+      "icon": "envelope",
+      "url": "mailto:licensing@benzinga.com"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Introduction",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "home",
+        "introduction"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Benzinga APIs",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "benzinga-apis/introduction",
+        {
+          "group": "Calendar",
+          "pages": [
+            "calendar/conference_calls/get-conference-calls",
+            "calendar/dividends/get-dividends",
+            "calendar/earnings/get-earnings",
+            "calendar/economics/get-economics",
+            "calendar/events/get-events",
+            "calendar/fda/get-fda",
+            "calendar/guidance/get-guidance",
+            "calendar/ipos/get-ipos",
+            "calendar/ma/get-merger-and-acquisition",
+            "calendar/offerings/get-offerings",
+            "calendar/ratings/get-ratings",
+            "calendar/ratings_analysts/get-ratings-analysts",
+            "calendar/ratings_firms/get-ratings-firms",
+            "calendar/splits/get-splits"
+          ]
+        }
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/Benzinga",
+    "facebook": "https://www.facebook.com/Benzinga/",
+    "website": "https://www.benzinga.com/apis/",
+    "github": "https://github.com/benzinga",
+    "linkedin": "https://www.linkedin.com/company/benzinga/"
   }
 }
