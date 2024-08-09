@@ -40,11 +40,13 @@ jobs:
             exit 1
           fi
 
-          filename=$(basename "$file" .spec.yml)
+          filename=$(basename "$file" .spec.yaml)
           mkdir -p "$filename"
           cd ./$filename
 
           command_output=$(mintlify-scrape openapi-file ../$file | tail -n +2)
+
+          ls -la
           
           merged_pages=$(echo "$command_output" | jq -s '[.[][] | .pages[]]')
 
