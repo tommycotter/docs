@@ -34,7 +34,7 @@ jobs:
 
     - name: Run OpenAPI processing script
       run: |
-        for file in ./openapi/*.yml; do
+        for file in ./openapi/*.yaml; do
           if [ ! -f "$file" ]; then
             echo "No OpenAPI files found."
             exit 1
