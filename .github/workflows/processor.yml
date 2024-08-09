@@ -22,6 +22,18 @@ jobs:
     - name: Install Mintlify Scrape
       run: npm install @mintlify/scraping@latest -g
 
+    - name: Verify OpenAPI Files Directory
+      run: |
+        if [ ! -d "../openapi" ]; then
+          echo "Directory './openapi' does not exist."
+          exit 1
+        fi
+
+        echo "Files in ../openapi/:"
+        ls ./openapi/
+
+        ls -la
+        
     - name: Run OpenAPI processing script
       run: |
         for file in ../openapi/*.yml; do
