@@ -23,17 +23,30 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 18
-    
-    - name: Run OpenAPI processing script
+
+    - name: Debug OpenAPI processing script
       run: |
+        echo "Listing files in ./openapi:"
+        ls -la ./openapi
+
         for file in ./openapi/*.yml; do
+          echo "Processing file: $file"
+
           filename=$(basename "$file" .spec.yml)
+          echo "Filename without extension: $filename"
+
           mkdir -p "$filename"
           cd ./$filename
 
           command_output=$(npx @mintlify/scraping@latest openapi-file ../$file | tail -n +2)
-          
+
+          echo "Command output:"
+          echo "$command_output"
+
           merged_pages=$(echo "$command_output" | jq -s '[.[][] | .pages[]]')
+
+          echo "Merged pages:"
+          echo "$merged_pages"
 
           if ! jq -e . >/dev/null 2>&1 <<<"$merged_pages"; then
             echo "Invalid JSON in merged_pages" >&2
@@ -41,6 +54,7 @@ jobs:
           fi
 
           output=$(jq -n --argjson pages "$merged_pages" --arg filename "$filename" '{"group": $filename, "pages": $pages}')
+          echo "Final output JSON:"
           echo "$output"
 
           cd ../
