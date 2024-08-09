@@ -1,0 +1,42 @@
+name: Process OpenAPI Files
+
+on:
+  push:
+    branches:
+      - main 
+  workflow_dispatch: # Allows the action to be triggered manually
+
+jobs:
+  process_openapi_files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+
+    - name: Run OpenAPI processing script
+      run: |
+        for file in ./openapi/*.yml; do
+          filename=$(basename "$file" .spec.yml)
+          mkdir -p "$filename"
+          cd ./$filename
+
+          command_output=$(mintlify-scrape openapi-file ../$file | tail -n +2)
+          
+          merged_pages=$(echo "$command_output" | jq -s '[.[][] | .pages[]]')
+
+          if ! jq -e . >/dev/null 2>&1 <<<"$merged_pages"; then
+            echo "Invalid JSON in merged_pages" >&2
+            exit 1
+          fi
+
+          output=$(jq -n --argjson pages "$merged_pages" --arg filename "$filename" '{"group": $filename, "pages": $pages}')
+          echo "$output"
+
+          cd ../
+        done
