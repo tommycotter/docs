@@ -3,7 +3,7 @@ name: Process OpenAPI Files
 on:
   push:
     branches:
-      - main 
+      - main  # Adjust this as needed
   workflow_dispatch: # Allows the action to be triggered manually
 
 jobs:
@@ -17,36 +17,21 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y jq
+        sudo apt-get install -y jq nodejs npm
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
+    - name: Install Mintlify Scrape
+      run: npm install @mintlify/scraping@latest -g
 
-    - name: Debug OpenAPI processing script
+    - name: Run OpenAPI processing script
       run: |
-        echo "Listing files in ./openapi:"
-        ls -la ./openapi
-
         for file in ./openapi/*.yml; do
-          echo "Processing file: $file"
-
           filename=$(basename "$file" .spec.yml)
-          echo "Filename without extension: $filename"
-
           mkdir -p "$filename"
           cd ./$filename
 
-          command_output=$(npx @mintlify/scraping@latest openapi-file ../$file | tail -n +2)
-
-          echo "Command output:"
-          echo "$command_output"
-
+          command_output=$(mintlify-scrape openapi-file ../$file | tail -n +2)
+          
           merged_pages=$(echo "$command_output" | jq -s '[.[][] | .pages[]]')
-
-          echo "Merged pages:"
-          echo "$merged_pages"
 
           if ! jq -e . >/dev/null 2>&1 <<<"$merged_pages"; then
             echo "Invalid JSON in merged_pages" >&2
@@ -54,7 +39,6 @@ jobs:
           fi
 
           output=$(jq -n --argjson pages "$merged_pages" --arg filename "$filename" '{"group": $filename, "pages": $pages}')
-          echo "Final output JSON:"
           echo "$output"
 
           cd ../
