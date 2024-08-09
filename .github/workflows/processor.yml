@@ -24,7 +24,7 @@ jobs:
 
     - name: Run OpenAPI processing script
       run: |
-        for file in ./openapi/*.yml; do
+        for file in ../openapi/*.yml; do
           filename=$(basename "$file" .spec.yml)
           mkdir -p "$filename"
           cd ./$filename
