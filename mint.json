@@ -7,8 +7,8 @@
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
+    "primary": "#8924A6",
+    "light": "#8924A6",
     "dark": "#0D9373",
     "anchors": {
       "from": "#0D9373",
@@ -30,12 +30,12 @@
   },
   "topbarLinks": [
     {
-      "name": "Learn More",
-      "url": "https://www.benzinga.com/apis"
+      "name": "Support",
+      "url": "mailto:licensing@benzinga.com"
     }
   ],
   "topbarCtaButton": {
-    "name": "Get Started",
+    "name": "Console",
     "url": "https://www.benzinga.com/apis/licensing/register"
   },
   "api": {
@@ -46,52 +46,78 @@
       "mode": "show"
     }
   },
-  "anchors": [
+  "tabs": [
     {
-      "name": "API Suite",
-      "icon": "list",
-      "url": "https://www.benzinga.com/apis/data"
+      "name": "Components",
+      "url": "components"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.benzinga.com/apis/blog/"
+      "name": "API Reference",
+      "url": "api-reference"
     },
     {
-      "name": "Contact Us",
-      "icon": "envelope",
-      "url": "mailto:licensing@benzinga.com"
+      "name": "WS Reference",
+      "url": "ws-reference"
+    },
+    {
+      "name": "Open Source",
+      "url": "open-source"
     }
   ],
   "navigation": [
     {
       "group": "Introduction",
       "pages": [
-        "home",
-        "introduction"
+        "introduction/welcome",
+        "introduction/introduction",
+        "introduction/architecture",
+        "introduction/faq"
       ]
     },
     {
-      "group": "Benzinga APIs",
+      "group": "Services",
       "pages": [
-        "benzinga-apis/introduction",
+        "services/overview"
+      ]
+    },
+    {
+      "group": "API Documentation",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/errors",
         {
           "group": "Calendar",
           "pages": [
-            "calendar/conference_calls/get-conference-calls",
-            "calendar/dividends/get-dividends",
-            "calendar/earnings/get-earnings",
-            "calendar/economics/get-economics",
-            "calendar/events/get-events",
-            "calendar/fda/get-fda",
-            "calendar/guidance/get-guidance",
-            "calendar/ipos/get-ipos",
-            "calendar/ma/get-merger-and-acquisition",
-            "calendar/offerings/get-offerings",
-            "calendar/ratings/get-ratings",
-            "calendar/ratings_analysts/get-ratings-analysts",
-            "calendar/ratings_firms/get-ratings-firms",
-            "calendar/splits/get-splits"
+            "api-reference/calendar/introduction",
+            "api-reference/calendar/conference_calls/get-conference-calls",
+            "api-reference/calendar/dividends/get-dividends",
+            "api-reference/calendar/earnings/get-earnings",
+            "api-reference/calendar/economics/get-economics",
+            "api-reference/calendar/events/get-events",
+            "api-reference/calendar/fda/get-fda",
+            "api-reference/calendar/guidance/get-guidance",
+            "api-reference/calendar/ipos/get-ipos",
+            "api-reference/calendar/ma/get-merger-and-acquisition",
+            "api-reference/calendar/offerings/get-offerings",
+            "api-reference/calendar/ratings/get-ratings",
+            "api-reference/calendar/ratings_analysts/get-ratings-analysts",
+            "api-reference/calendar/ratings_firms/get-ratings-firms",
+            "api-reference/calendar/splits/get-splits"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "WS Documentation",
+      "pages": [
+        "ws-reference/introduction",
+        "ws-reference/authentication",
+        "ws-reference/errors",
+        {
+          "group": "Data Websocket",
+          "pages": [
+            "ws-reference/data-websocket/get-analyst-insights-stream"
           ]
         }
       ]
